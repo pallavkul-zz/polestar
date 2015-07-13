@@ -1,3 +1,16 @@
 .shelf-pane {
   margin-bottom: 20px;
 }
+
+.pane.encoding-pane {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  height: 300px;
+}
+
+.pane.encoding-pane .shelf-pane {
+  float: left;
+  width: 49%;
+  padding-left: 1%;
+}

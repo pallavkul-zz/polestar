@@ -1,4 +1,4 @@
-<div class="card scroll-y abs-100">
+<div class="card scroll-y">
   <a class="right"  ng-click="clear()"><i class="fa fa-trash-o"></i> Clear</a>
   <h2>Encoding</h2>
 
@@ -18,21 +18,35 @@
     <field-def-editor enc-type="'col'"
       enc="Spec.spec.encoding"
       marktype="Spec.spec.marktype"
-      field-def-schema="schema.properties.encoding.properties.col"
-    >
+      field-def-schema="schema.properties.encoding.properties.col">
     </field-def-editor>
     <field-def-editor enc-type="'row'"
       enc="Spec.spec.encoding"
       marktype="Spec.spec.marktype"
       field-def-schema="schema.properties.encoding.properties.row">
     </field-def-editor>
-  </div>
-  <div class="shelf-pane shelf-marks-pane full-width">
-    <div class="right">
+    <!--
+    <div class="left" style="margin-right: 10px;">
+      <h3>Type of chart: </h3>
+    </div>
+    <div class="left">
       <select class="markselect" ng-model="Spec.spec.marktype"
               ng-options="type for type in ['point', 'tick', 'bar', 'line', 'area', 'text']"
               ng-change="markChange()"></select>
+
+
+      <button ng-click="chartChange('point')"><i class="fa fa-circle-o"></i></button>
+      <button ng-click="chartChange('bar')"><i class="fa fa-bar-chart"></i></button>
+      <button ng-click="chartChange('area')"><i class="fa fa-area-chart"></i></button>
+      <button ng-click="chartChange('line')"><i class="fa fa-line-chart"></i></button>
+      <button ng-click="chartChange('tick')"><i class="fa fa-dot-circle-o"></i></button>
+      <button ng-click="chartChange('text')"><i class="fa fa-font"></i></button>
+
     </div>
+    <div class="clear"></div>
+    -->
+  </div>
+  <div class="shelf-pane shelf-marks-pane full-width">
     <h3>Marks</h3>
 
     <field-def-editor enc-type="'size'"

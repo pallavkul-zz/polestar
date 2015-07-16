@@ -1,6 +1,6 @@
 <div class="flex-root vflex full-width full-height">
     <div class="full-width no-shrink">
-        <div class="card no-right-margin no-top-margin">
+        <!-- <div class="card no-right-margin no-top-margin">
             <div class="right">
                 <div class="controls">
           <span ng-show="consts.debug">
@@ -27,22 +27,22 @@
 
             </div>
             <h1>Pole✭</h1>
-        </div>
+        </div> -->
         <alert-messages></alert-messages>
     </div>
     <div>
-        <div class="pane encoding-pane" style="width: 100%;padding: 0px;margin: 0px;height: 300px;">
+        <div class="pane encoding-pane" style="width: 100%;padding: 0px;margin: 0px;">
             <shelves></shelves>
         </div>
     </div>
-    <div class="hflex full-width main-panel grow-1">
+    <div class="hflex full-width main-panel grow-1" style="position:absolute; height: 100%;">
 
         <div class="pane data-pane noselect">
             <div class="card abs-100">
-                <div class="right">
+                <!-- <div class="right">
                     <dataset-selector></dataset-selector>
-                </div>
-                <h2>Data</h2>
+                </div> -->
+                <h2>Fields</h2>
                 <schema-list></schema-list>
             </div>
         </div>
@@ -65,7 +65,7 @@
                     ></vl-plot-group>
         </div>
     </div>
-    <div class="hflex full-width dev-panel" ng-show="showDevPanel">
+    <!-- <div class="hflex full-width dev-panel" ng-show="showDevPanel">
         <div class="pane">
             <div class="card">
                 <button ng-click="Logger.clear()">Clear logs</button>
@@ -84,9 +84,9 @@
         <div class="pane vg-pane">
             <vg-spec-editor></vg-spec-editor>
         </div>
-    </div>
+    </div> -->
 </div>
-<bookmark-list active="showBookmark"
+<!-- <bookmark-list active="showBookmark"
                deactivate="hideBookmark();"
                highlighted="{}">
-</bookmark-list>
+</bookmark-list> -->

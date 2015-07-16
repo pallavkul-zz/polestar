@@ -17,6 +17,11 @@ angular.module('polestar')
           Logger.logInteraction(Logger.actions.MARK_CHANGE, Spec.spec.marktype);
         };
 
+        $scope.chartChange = function(chartType) {
+          Spec.spec.marktype = chartType;
+          Logger.logInteraction(Logger.actions.MARK_CHANGE, Spec.spec.marktype);
+        };
+
         $scope.transpose = function(){
           vl.Encoding.transpose(Spec.spec);
         };

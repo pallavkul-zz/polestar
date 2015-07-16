@@ -10,16 +10,16 @@ angular.module('polestar', [
     'zeroclipboard',
     'ui.router',
     'ui.select',
-    'Chronicle',
-    'LocalStorageModule',
+
+
     '720kb.tooltips',
     'ngOrderObjectBy',
-    'angular-websql',
+
     'vlui'])
   .constant('_', window._)
   .constant('vl', window.vl)
   .constant('vg', window.vg)
-  .constant('Papa', window.Papa)
+
   .constant('ZSchema', window.ZSchema)
   .constant('Tether', window.Tether)
   .constant('Drop', window.Drop)
@@ -38,9 +38,6 @@ angular.module('polestar', [
       swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
     });
   })
-  .config(function(localStorageServiceProvider) {
-    localStorageServiceProvider.setPrefix('polestar');
-  })
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
@@ -49,5 +46,5 @@ angular.module('polestar', [
         controller: 'MainCtrl'
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/404');
   });

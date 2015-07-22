@@ -10,11 +10,8 @@ angular.module('polestar', [
     'zeroclipboard',
     'ui.router',
     'ui.select',
-
-
     '720kb.tooltips',
     'ngOrderObjectBy',
-
     'vlui'])
   .constant('_', window._)
   .constant('vl', window.vl)
@@ -45,6 +42,5 @@ angular.module('polestar', [
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
-
     $urlRouterProvider.otherwise('/404');
   });

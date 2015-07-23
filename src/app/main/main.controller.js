@@ -30,8 +30,12 @@ angular.module('polestar')
         } else {
             job_id = Math.floor((Math.random() * 10000) + 1);
         }
-
-        url += '&count=' + count + '&first=true&format=d3';
+        url = url.trim();
+        // Remove trailing '?' in url
+        if (url.substring(url.length-1) == "?") {
+            url = url.substring(0, url.length-1);
+        }
+        url += '?&count=' + count + '&first=true&format=d3';
         //url = "http://uwdata.github.io/polestar/data/birdstrikes.json";
         var NewDataset = {};
         NewDataset.datasets = [{

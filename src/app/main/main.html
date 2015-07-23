@@ -1,4 +1,4 @@
-<div class="flex-root vflex full-width full-height">
+<div class="vflex full-width full-height">
     <div class="full-width no-shrink">
         <!-- <div class="card no-right-margin no-top-margin">
             <div class="right">
@@ -30,14 +30,8 @@
         </div> -->
         <alert-messages></alert-messages>
     </div>
-    <div>
-        <div class="pane encoding-pane" style="width: 100%;padding: 0px;margin: 0px;">
-            <shelves></shelves>
-        </div>
-    </div>
-    <div class="hflex full-width main-panel grow-1" style="position:absolute; height: 100%;">
-
-        <div class="pane data-pane noselect">
+    <div class="hflex full-width full-height">
+        <div class="pane data-pane noselect flex-root">
             <div class="card abs-100">
                 <!-- <div class="right">
                     <dataset-selector></dataset-selector>
@@ -46,25 +40,30 @@
                 <schema-list></schema-list>
             </div>
         </div>
-
-        <div class="pane vis-pane">
-            <vl-plot-group class="card abs-100 no-right-margin full-vl-plot-group"
-                           chart="Spec.chart"
-                           show-bookmark="true"
-                           show-filter-null="true"
-                           show-log="true"
-                           show-mark-type="true"
-                           show-sort="true"
-                           show-transpose="true"
-                           config-set="large"
-                           chart-type="Spec.spec.marktype"
-                           show-label="true"
-                           tooltip="true"
-
-                           always-scrollable="true"
-                    ></vl-plot-group>
+        <div class="vflex full-width full-height main-panel grow-1">
+            <div class="pane encoding-pane" style="width: 100%;padding: 0px;margin: 0px;">
+                <shelves></shelves>
+            </div>
+            <div class="pane vis-pane">
+                <vl-plot-group class="abs-100 no-right-margin full-vl-plot-group"
+                               chart="Spec.chart"
+                               show-bookmark="true"
+                               show-filter-null="true"
+                               show-log="true"
+                               show-mark-type="true"
+                               show-sort="true"
+                               show-transpose="true"
+                               config-set="large"
+                               chart-type="Spec.spec.marktype"
+                               show-label="true"
+                               tooltip="true"
+                               always-scrollable="true"
+                        ></vl-plot-group>
+            </div>
         </div>
+
     </div>
+
     <!-- <div class="hflex full-width dev-panel" ng-show="showDevPanel">
         <div class="pane">
             <div class="card">

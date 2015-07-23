@@ -37,37 +37,62 @@ angular.module('polestar')
         }
         url += '?&count=' + count + '&first=true&format=d3';
         //url = "http://uwdata.github.io/polestar/data/birdstrikes.json";
-        var NewDataset = {};
-        NewDataset.datasets = [{
-          name: 'Custom',
-          url: url,
-          id: 'job_' + job_id,
-          group: 'data'
-        }];
-        NewDataset.dataset = NewDataset.datasets[0];
-        NewDataset.currentNewDataset = undefined;  // dataset before update
-        NewDataset.dataschema = [];
-        NewDataset.dataschema.byName = {};
-        NewDataset.stats = {};
-        NewDataset.type = undefined;
 
-        // TODO move these to constant to a universal vlui constant file
-        NewDataset.typeNames = {
-          N: 'text',
-          O: 'text-ordinal',
-          Q: 'number',
-          T: 'time',
-          G: 'geo'
-        };
+        // Test if the url is valid
+        $.getJSON(url).then(function (results) {
+            // Check if there is any error code in the response
+            if('status' in results && 'message' in results) {
+                var errorMessage = results.message;
+                // Shorten the error message
+                var maxLength = 500 // maximum number of characters
+                errorMessage = shortenText(errorMessage, maxLength);
+                Alerts.add('Error: ' + errorMessage);
+            } else {
+                var NewDataset = {};
+                NewDataset.datasets = [{
+                  name: 'Custom',
+                  url: url,
+                  id: 'job_' + job_id,
+                  group: 'data'
+                }];
+                NewDataset.dataset = NewDataset.datasets[0];
+                NewDataset.currentNewDataset = undefined;  // dataset before update
+                NewDataset.dataschema = [];
+                NewDataset.dataschema.byName = {};
+                NewDataset.stats = {};
+                NewDataset.type = undefined;
 
-        NewDataset.fieldOrder = vl.field.order.typeThenName;
+                // TODO move these to constant to a universal vlui constant file
+                NewDataset.typeNames = {
+                  N: 'text',
+                  O: 'text-ordinal',
+                  Q: 'number',
+                  T: 'time',
+                  G: 'geo'
+                };
 
-        // initialize undo after we have a dataset
-        Dataset.update(NewDataset.dataset).then(function() {
-          Config.updateDataset(NewDataset.dataset);
+                NewDataset.fieldOrder = vl.field.order.typeThenName;
+
+                // initialize undo after we have a dataset
+                Dataset.update(NewDataset.dataset).then(function() {
+                  Config.updateDataset(NewDataset.dataset);
+                });
+            }
+        }, function (err) {
+            Alerts.add('Error: ' + shortenText(err.responseText, 500));
         });
     } else {
         Alerts.add('An unknown error occurred. Please try again.');
     }
 
+    // Shorten the given text to the given number of characters
+    function shortenText(text, maxLength) {
+        if(text.length > maxLength) {
+            text = text.substr(0, maxLength);
+            // Re-trim if we are in the middle of a word
+            text = text.substr(0, Math.min(text.length, text.lastIndexOf(" ")));
+            text += "...";
+        }
+        return text;
+    }
   });

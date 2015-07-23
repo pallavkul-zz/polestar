@@ -28,16 +28,14 @@ null-filter-directive {
 /** panes **/
 
 .pane.encoding-pane {
-  width: 230px;
+  width: 100%;
   flex-shrink: 0;
 }
-
 
 .pane.data-pane {
   width: 200px;
   flex-shrink: 0;
 }
-
 
 .pane.vis-pane{
   flex-grow: 1;
@@ -60,3 +58,24 @@ null-filter-directive {
   overflow: scroll;
 }
 
+.vis-pane .card {
+  background-color: #FFF;
+}
+
+/** Override vega-lite-ui css for polestar **/
+
+.field-info.pill {
+  background-color: #FFF;
+  font-weight: 500;
+}
+
+.field-info.ui-draggable-dragging {
+  min-width: 150px;
+  width: auto;
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.2);
+  color: #FFF;
+  background-color: #69be28;
+  .info {
+    display: none;
+  }
+}

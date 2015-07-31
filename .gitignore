@@ -5,3 +5,4 @@ bower_components/
 dist/
 test.log
 .idea/
+.DS_Store

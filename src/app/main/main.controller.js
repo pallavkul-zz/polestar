@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('polestar')
-  .controller('MainCtrl', function($scope, $document, $location, Spec, Dataset, Config, consts, Logger, Alerts) {
+  .controller('MainCtrl', function($scope, $document, $location, Spec, jQuery, Dataset, Config, consts, Logger, Alerts) {
     $scope.Spec = Spec;
     $scope.Dataset = Dataset;
     $scope.Config = Config;
@@ -15,7 +15,12 @@ angular.module('polestar')
     $scope.canUndo = false;
     $scope.canRedo = false;
 
-    var formattedValues = [];
+    // Flag to show loading spinner
+    $scope.loading = false;
+
+    // Flag to show loading spinner when the chart is rendered
+    $scope.rendering = false;
+
     console.log($location.search());
     if(Object.keys($location.search()).indexOf("url") >= 0) {
         var url = $location.search().url;
@@ -38,8 +43,9 @@ angular.module('polestar')
         url += '?&count=' + count + '&first=true&format=d3';
         //url = "http://uwdata.github.io/polestar/data/birdstrikes.json";
 
+        $scope.loading = true;
         // Test if the url is valid
-        $.getJSON(url).then(function (results) {
+        jQuery.getJSON(url).then(function (results) {
             // Check if there is any error code in the response
             if('status' in results && 'message' in results) {
                 var errorMessage = results.message;
@@ -48,37 +54,19 @@ angular.module('polestar')
                 errorMessage = shortenText(errorMessage, maxLength);
                 Alerts.add('Error: ' + errorMessage);
             } else {
-                var NewDataset = {};
-                NewDataset.datasets = [{
-                  name: 'Custom',
-                  url: url,
-                  id: 'job_' + job_id,
-                  group: 'data'
-                }];
-                NewDataset.dataset = NewDataset.datasets[0];
-                NewDataset.currentNewDataset = undefined;  // dataset before update
-                NewDataset.dataschema = [];
-                NewDataset.dataschema.byName = {};
-                NewDataset.stats = {};
-                NewDataset.type = undefined;
 
-                // TODO move these to constant to a universal vlui constant file
-                NewDataset.typeNames = {
-                  N: 'text',
-                  O: 'text-ordinal',
-                  Q: 'number',
-                  T: 'time',
-                  G: 'geo'
+                var newDataset = {
+                    url: url,
+                    id: job_id
                 };
 
-                NewDataset.fieldOrder = vl.field.order.typeThenName;
-
-                // initialize undo after we have a dataset
-                Dataset.update(NewDataset.dataset).then(function() {
-                  Config.updateDataset(NewDataset.dataset);
+                Dataset.update(newDataset).then(function() {
+                  Config.updateDataset(newDataset);
+                  $scope.loading = false;
                 });
             }
         }, function (err) {
+            $scope.loading = false;
             Alerts.add('Error: ' + shortenText(err.responseText, 500));
         });
     } else {

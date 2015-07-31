@@ -1,42 +1,16 @@
+<div class="spinner" ng-show="loading">
+    <div class="ajax_loader">
+        <img src="assets/images/mini-loader.gif"/>
+    </div>
+</div>
 <div class="vflex full-width full-height">
     <div class="full-width no-shrink">
-        <!-- <div class="card no-right-margin no-top-margin">
-            <div class="right">
-                <div class="controls">
-          <span ng-show="consts.debug">
-            <a ng-href="{{ {encoding:Spec.chart.vlSpec} | reportUrl }}" target="_blank" class="command debug" tooltips
-               tooltip-size="small"
-               tooltip-content="Report an issue">
-                <i class="fa fa-bug"></i>
-            </a>
-            <a class="command debug" ng-click="showDevPanel = !showDevPanel" tooltips
-               tooltip-size="small"
-               tooltip-content="Debug Tool">
-                <i class="fa fa-wrench"></i>
-            </a>
-          </span>
-                    <a class="command" ng-click="showBookmark=true">
-                        <i class="fa fa-bookmark"></i>
-                        Bookmarks ({{Bookmarks.length}})
-                    </a>
-                    <a class="command" ng-click="chron.undo()" ng-class="{disabled: !canUndo}"><i
-                            class="fa fa-undo"></i> Undo</a>
-                    <a class="command" ng-click="chron.redo()" ng-class="{disabled: !canRedo}"><i
-                            class="fa fa-repeat"></i> Redo</a>
-                </div>
-
-            </div>
-            <h1>Pole✭</h1>
-        </div> -->
         <alert-messages></alert-messages>
     </div>
     <div class="hflex full-width full-height">
         <div class="pane data-pane noselect flex-root">
             <div class="card abs-100">
-                <!-- <div class="right">
-                    <dataset-selector></dataset-selector>
-                </div> -->
-                <h2>Fields</h2>
+                <h2>Columns</h2>
                 <schema-list></schema-list>
             </div>
         </div>
@@ -45,6 +19,11 @@
                 <shelves></shelves>
             </div>
             <div class="pane vis-pane">
+                <div class="spinner" ng-show="rendering">
+                    <div class="ajax_loader">
+                        <img src="assets/images/mini-loader.gif"/>
+                    </div>
+                </div>
                 <vl-plot-group class="abs-100 no-right-margin full-vl-plot-group"
                                chart="Spec.chart"
                                show-bookmark="true"
@@ -58,34 +37,9 @@
                                show-label="true"
                                tooltip="true"
                                always-scrollable="true"
+                               rendering="rendering"
                         ></vl-plot-group>
             </div>
         </div>
-
     </div>
-
-    <!-- <div class="hflex full-width dev-panel" ng-show="showDevPanel">
-        <div class="pane">
-            <div class="card">
-                <button ng-click="Logger.clear()">Clear logs</button>
-                <br />
-                <button ng-click="Logger.export()">Download logs</button>
-            </div>
-        </div>
-        <div class="pane config-pane">
-            <div class="card scroll-y  abs-100">
-                <configuration-editor></configuration-editor>
-            </div>
-        </div>
-        <div class="pane vl-pane ">
-            <vl-spec-editor></vl-spec-editor>
-        </div>
-        <div class="pane vg-pane">
-            <vg-spec-editor></vg-spec-editor>
-        </div>
-    </div> -->
 </div>
-<!-- <bookmark-list active="showBookmark"
-               deactivate="hideBookmark();"
-               highlighted="{}">
-</bookmark-list> -->

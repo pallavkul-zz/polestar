@@ -16,7 +16,7 @@ angular.module('polestar', [
   .constant('_', window._)
   .constant('vl', window.vl)
   .constant('vg', window.vg)
-
+  .constant('jQuery', window.$)
   .constant('ZSchema', window.ZSchema)
   .constant('Tether', window.Tether)
   .constant('Drop', window.Drop)
